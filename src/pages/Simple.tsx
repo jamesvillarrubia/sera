@@ -1,156 +1,59 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { motion } from "framer-motion"
-import { ArrowRight, Shield, MessageSquare, CheckCircle } from "lucide-react"
-import { Link } from "react-router-dom"
 
-  export default function Home() {
+import { Card } from "@/components/ui/card"
+// ... existing code ...
+import { EmailOctopusForm } from "@/components/forms/EmailOctopusForm"
 
+export default function Simple() {
   return (
     <>
-    {/* Hero Section */}
-    <div 
-      className="w-full"
-      style={{ 
-        backgroundImage: `url(./assets/images/duotone.png)`, // Add background image
-        backgroundPosition: 'center', // Center the background image
-        backgroundRepeat: 'repeat',
-        backgroundSize: '1000px'
-      }}
-    >
-      <div className="mx-auto max-w-screen-xl">
-        <section className="mx-auto container px-4 py-40 text-white">
-          <motion.div 
-            className="text-center max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h1 className="text-4xl md:text-5xl leading-loose	font-bold mb-6 text-white/50">
-              Your voice <span className="font-script text-7xl text-white">Protected.</span><br />
-              Your workplace <span className="font-script text-7xl text-white">Improved.</span>
-            </h1>
-            <p className="text-xl text-muted-foreground mb-12 text-white">
-              Sera is the world's first A.I. Ombudsman.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center text-black">
-              <Button asChild variant="outline" size="lg">
-                <Link to="/employees">
-                  For Employees
-                </Link>
-              </Button>
-              <Button variant="outline" size="lg" asChild>
-                <Link to="/employers">
-                  For Employers
-                </Link>
-              </Button>
+      {/* Hero Section */}
+      <div 
+        className="w-full min-h-screen flex items-center justify-center"
+        style={{
+          //  backgroundColor: '#fef2e7',
+          backgroundColor: '#160042',
+        }}
+        // style={{ 
+        //   backgroundImage: `url(./assets/images/duotone.png)`,
+        //   backgroundPosition: 'center',
+        //   backgroundRepeat: 'repeat',
+        //   backgroundSize: '1000px'
+        // }}
+      >
+        <div className="container mx-auto px-4"
+          style={{
+            maxWidth: 1000
+          }}
+        >
+          <Card className="mx-auto overflow-hidden border-none">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {/* Left side with form */}
+              <div className="p-6 pt-8">
+                <img src="./assets/images/color.png" alt="Logo" 
+                  className="h-10 w-auto mb-4 mx-auto block lg:hidden" 
+                />
+
+                <h2 className="text-sera text-2xl font-bold mb-4 text-center">Join the Waitlist for the World’s First AI-Ombudsman</h2>
+                <p className="text-muted-foreground mb-3 text-center">
+                Designed for CHROs and senior leaders committed to fostering trust, security, and accountability, our AI-Ombudsman empowers employees to report misconduct safely—without fear of retaliation. Unlike traditional systems, it provides organizations with a structured, ethical approach to addressing concerns while ensuring privacy and compliance.
+                </p>
+                <p className="text-sera mb-1 font-semibold text-center">
+                Be the first to explore how AI can transform workplace accountability.
+                </p>
+                <EmailOctopusForm />
+              </div>
+              {/* Right side with image */}
+              <div className="relative h-full min-h-[300px] hidden lg:block bg-black">
+                <img 
+                  src="./assets/images/sider.png" 
+                  alt="Workplace illustration" 
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
             </div>
-          </motion.div>
-        </section>
+          </Card>
+        </div>
       </div>
-    </div>
-    <div>
-      <div className="min-h-screen mx-auto max-w-screen-xl">
-      {/* Features Section */}
-      <section className="mx-auto container px-4 py-20 bg-muted/50">
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              title: "Submit Reports",
-              description: "Easily submit your concerns through our secure platform.",
-              icon: <MessageSquare className="h-6 w-6" />,
-            },
-            {
-              title: "Stay Protected",
-              description: "Your identity remains completely confidential unless you choose otherwise.",
-              icon: <Shield className="h-6 w-6" />,
-            },
-            {
-              title: "Get Resolution",
-              description: "Track your report's progress while maintaining privacy.",
-              icon: <CheckCircle className="h-6 w-6" />,
-            },
-          ].map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-            >
-              <Card>
-                <CardHeader>
-                  <div className="mb-4 inline-block rounded-lg bg-primary/10 p-3">
-                    {feature.icon}
-                  </div>
-                  <CardTitle>{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>{feature.description}</CardDescription>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Split Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="grid md:grid-cols-2 gap-8">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card>
-              <CardHeader>
-                <CardTitle>For Employees</CardTitle>
-                <CardDescription>
-                  Need to report a workplace issue?
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-6">
-                  Speak up safely and confidentially. Your identity remains protected unless you choose otherwise.
-                </p>
-                <Button asChild>
-                  <Link to="/employees">
-                    Learn more
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card>
-              <CardHeader>
-                <CardTitle>For Employers</CardTitle>
-                <CardDescription>
-                  Want to build a safer workplace?
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-6">
-                  Create a more transparent, ethical workplace culture while reducing liability and improving retention.
-                </p>
-                <Button variant="outline" asChild>
-                  <Link to="/employers">
-                    Learn more
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-      </section>
-    </div>
-    </div>
     </>
   )
 }
