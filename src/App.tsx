@@ -5,10 +5,11 @@ import Employees from './pages/Employees';
 import Employers from './pages/Employers';
 import FAQ from './pages/FAQ';
 import Simple from './pages/Simple';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function AppContent() {
   const location = useLocation();
-  const showNavBar = location.pathname !== '/';
+  const showNavBar = location.pathname !== '/' && location.pathname !== '/privacy-policy';
 
   return (
     <div className="min-h-screen bg-neutral-50">
@@ -19,6 +20,7 @@ function AppContent() {
           <Route path="/employees" element={<Employees />} />
           <Route path="/employers" element={<Employers />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
       </main>
     </div>
